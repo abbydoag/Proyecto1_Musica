@@ -68,6 +68,45 @@ mainMelody2_phrase = Phrase(intro_chorus_duration)
 mainMelody2_phrase.addNoteList(pitches6, duration6)
 mainMelody2_phrase.addNoteList(pitches7, duration7)
 
+# CAJITA MELANCOLICA BIEN CHICLE-BOMBASTIC Y CARAMBOLANA PARA LA PARTE FINALEICHON
+
+box_pitches = [
+    B3, REST, FS3, REST,
+    A3, REST, E3, REST,
+    G3, REST, D3, REST,
+    FS3, REST, CS3, REST,
+    B3, REST, FS3, REST,
+    A3, REST, E3, REST,
+    G3, REST, D3, REST,
+    FS3, REST, CS3, REST
+]
+
+box_duration = [
+    HN, HN, HN, HN,
+    HN, HN, HN, HN,
+    HN, HN, HN, HN,
+    HN, HN, HN, HN,
+    HN, HN, HN, HN,
+    HN, HN, HN, HN,
+    HN, HN, HN, HN,
+    HN, HN, HN, HN
+]
+
+box_phrase = Phrase(intro_chorus_duration)
+box_phrase.addNoteList(box_pitches, box_duration)
+
+box_phrase.setDynamic(72)
+
+boxPart = Part(
+    "MUSICBOMBASTICBOX",
+    MUSIC_BOX,
+    3
+)
+
+boxPart.add(box_phrase)
+
+# FIN ACOMPANAMIENTO
+
 mainMelody = Part("Main", PIANO, 0)
 
 #intro
@@ -90,6 +129,14 @@ theme = Score("GLACEIR",145)
 theme.add(mainMelody)
 theme.add(chorusCompany)
 theme.add(mainMelody2)
+
+# Nuevo acompanamiento DE LA CAJITEICHON
+theme.add(boxPart)
+# FIN NUEVO ACOMPANAMIENTO
+
 Play.setVolume(90, 1)
+
+# Guardar como archivo MIDI
+Write.midi(theme, "GLACEIR.mid")
 
 Play.midi(theme)
